@@ -1,0 +1,6 @@
+/_build
+/mods
+/mods/**/*
+/require
+/esa.conf
+/*.exe
