@@ -1,7 +1,7 @@
 Red []
 
-Esa-Service-Update: ctx [
-    call: fn [
+Esa-Service-Update: context [
+    call: func [
         post-number
         /name name-data /category category-data /tags tags-data /body-md body-md-data
         /wip /skip-notice
@@ -27,9 +27,9 @@ Esa-Service-Update: ctx [
         ]
     ]
 
-    call-with-body-md-command: fn [number body-md][call/body-md number body-md]
+    call-with-body-md-command: func [number body-md][call/body-md number body-md]
 
-    call-with-body-md-wip-command: fn [number body-md][call/body-md/wip number body-md]
+    call-with-body-md-wip-command: func [number body-md][call/body-md/wip number body-md]
 
-    call-with-body-md-skip-notice-command: fn [number body-md][call/body-md/skip-notice number body-md]
+    call-with-body-md-skip-notice-command: func [number body-md][call/body-md/skip-notice number body-md]
 ]

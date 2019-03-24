@@ -1,9 +1,9 @@
 Red []
 
-Esa-Component-Edit: ctx [
+Esa-Component-Edit: context [
     JSON: none NAME: none CATEGORY: none TAGS: none PROGRESS: none UPDATED: none URL: none NUMBER: none BODY-MD: none
 
-    init: &[
+    init: function [][
         out: ~c[
             button "To Index" [.on-goto-index]
             text (NUMBER) text (UPDATED) text (either PROGRESS ["Ship"]["WIP"]) text (URL) return
@@ -19,37 +19,35 @@ Esa-Component-Edit: ctx [
         ~c[across space 0x0 panel [(out)]]
     ]
 
-    .on-goto-index: &[Esa/navigate index]
+    .on-goto-index: does [Esa/navigate "/index"]
 
-    .on-update-name: fn [input-name repo][
+    .on-update-name: func [input-name repo][
         Esa-Service-Update/call/name repo input-name
     ]
 
-    .on-update-category: fn [input-category repo][
+    .on-update-category: func [input-category repo][
         Esa-Service-Update/call/category repo input-category
     ]
 
-    .on-update-tags: fn [input-tags repo][
-        tags: read-from-minibuffer [
-            "Tgas: " mapconcat 'identity [delete "" (split-string (format "%s" JSON/tags) "[\]\[,\(\) ]") " "]
-        ]
+    .on-update-tags: func [input-tags repo /local tags][
+        input-tags: String/_split input-tags " "
         Esa-Service-Update/call/tags repo input-tags
     ]
 
-    .on-update-body: &[
+    .on-update-body: does [
         Esa-Service-Update/call-with-body-md-skip-notice-command JSON/number BODY-MD
     ]
 
-    .on-update-body-with-notice: &[
+    .on-update-body-with-notice: does [
         Esa-Service-Update/call-with-body-md-wip-command JSON/number BODY-MD
     ]
 
-    .on-update-body-with-wip: &[
+    .on-update-body-with-wip: does [
         Esa-Service-Update/call-with-body-md-wip-command JSON/number BODY-MD
     ]
 
-    .on-delete-esa: &[
+    .on-delete-esa: does [
         Esa-Service-Delete/call JSON/number
-        Esa/navigate/reload index
+        Esa/navigate/reload "/index"
     ]
 ]

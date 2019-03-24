@@ -1,7 +1,7 @@
 Red []
 
-Esa-Api-Client: ctx [
-    request: fn [
+Esa-Api-Client: context [
+    request: function [
         url-data callback-message
         /get get-data /post post-data /put put-data /patch patch-data /delete delete-data
     ][
@@ -40,7 +40,8 @@ Esa-Api-Client: ctx [
                     unless 'get == method [
                         call/1: to-path call/1
                         append call/1 method
-                        append call data
+                        append call url-data
+                        append call callback-message
                         if 'post == method [append call post-data]
                         if 'put == method [append call put-data]
                         if 'patch == method [append call patch-data]

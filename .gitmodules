@@ -1,6 +1,3 @@
-[submodule "mods/github.com/nabinno/mods"]
-	path = mods/github.com/nabinno/mods
-	url = https://github.com/nabinno/mods
 [submodule "mods/github.com/nabinno/red-elixir"]
 	path = mods/github.com/nabinno/red-elixir
 	url = https://github.com/nabinno/red-elixir
@@ -10,6 +7,12 @@
 [submodule "mods/github.com/rebolek/red-tools"]
 	path = mods/github.com/rebolek/red-tools
 	url = https://github.com/rebolek/red-tools
+[submodule "mods/github.com/nabinno/red-tools"]
+	path = mods/github.com/nabinno/red-tools
+	url = https://github.com/nabinno/red-tools
 [submodule "mods/github.com/toomasv/regex"]
 	path = mods/github.com/toomasv/regex
 	url = https://github.com/toomasv/regex
+[submodule "mods/github.com/nabinno/mods"]
+	path = mods/github.com/nabinno/mods
+	url = https://github.com/nabinno/mods

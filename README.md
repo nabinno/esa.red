@@ -1,11 +1,20 @@
-# esa.red --- Interface to esa.io (\\( ⁰⊖⁰)/)
-## Installation
+# esa.red --- Interface to esa.io (\\( ⁰⊖⁰)/) [![Build Status](https://travis-ci.com/nabinno/esa.red.svg)](https://travis-ci.com/nabinno/esa.red/builds)
+<img src=esa.red.png width=400>
 
-## Working with the theme git submodule
-To pull in submodule changes:
+### Target OS
+- Windows
+- macOS
+
+## Download & Installation
+### Via Releases
+https://github.com/nabinno/esa.red/releases
+
+### Via Build
+Pulling lastest of all git submodules with [hot command](https://github.com/nabinno/hot).
 
 ```sh
 > hot mods/get
+> red -r -t {{Target OS}} init.red
 ```
 
 ---

@@ -1,0 +1,46 @@
+os: linux
+sudo: false
+env:
+  - REQUIRED_RED_VERSION=064
+
+install:
+  # Red lang:
+  - sudo apt-get install lib32ncurses5 lib32z1 libc6-i386 libcurl3
+  - sudo dpkg --add-architecture i386
+  - sudo apt-get update
+  - sudo apt-get install libc6:i386 libcurl3:i386
+  - mkdir -p .local/bin
+  - wget https://static.red-lang.org/dl/linux/red-${REQUIRED_RED_VERSION} -O .local/bin/red
+  - chmod 744 .local/bin/red
+  - export PATH="`pwd`/.local/bin:${PATH}"
+  - red --version
+  # Hot commands
+  - wget https://github.com/nabinno/hot/releases/download/0.0.3/hot-linux -O .local/bin/hot
+  - chmod 744 .local/bin/hot
+  - hot cmd/install https://raw.githubusercontent.com/nabinno/mods/master/mods.red
+  - hot mods/clean
+  - hot mods/get
+
+script:
+  - mkdir -p _build
+  # - red -r -t Linux init.red
+  # - mv init _build/esa-linux
+  - red -r -t Windows init.red
+  - mv init.exe _build/esa-windows.exe
+  - red -r -t macOS init.red
+  - mv init.app _build/esa-macos
+  - tar zcvf _build/esa-macos.tar.gz _build/esa-macos
+
+deploy:
+  provider: releases
+  api_key:
+    secure: k/R9qR1ApbGntQl775lPAWJTX4siaHgCSoPld3fPIlk+ktTLABb4UiWbjq4G+eKsGbKjo8ymlfN6g5fcxTdDx1paxvoaS+oM4G6G7WFRG7vmlgYU+ZaIzAqJ7sOmLJyb34MMYKougXDeXsGQSgPAfA0MdSqHM4WVoQhS/bq1X4qXOYHAziQpv/YqsdEKPrR60UvJ5cHywrxZjSotVjN0XWN3CNXJ0bH6ZmgliqIxe+O1HduA/JHMgX7JVUFa2HKHyPGoyY/dz9Nfzag9KwIdjtwFErzcXxDEPf65YxpuPRODGGV6tHkk1MYGCzuGYqa5Wzyl6H3QnuK5/MLERcdVOhqG3ojoPwCfydFNU0QkHAOmnOKG0YY0KzONpHCLHiyOEJRLj/XKiDc/bCl8fXROXtod1yW/gd8RNNZApaPaHDNhQWZG7M/Dpl2W+HMLjBtxwoM4vnKExhgGip1CY5EIv+LkBDiyQgDuFrG6GWHQFNYY3+6hXUXFJLjTvJsfondlkl6ae3U22lUmGR4tVnH3v7oedAZIzB/8G1puTtcKe3lLJbPFthD8udjyhPqJxtR0pRg4ppuTfQbsznZ80GBXyVHoRM/yhrGa/79S10c/oX9ZMc/px/jdy1O7BykhLGw7bdkcL6AWXklv1+ETh4VvfoBjU1twK97Se0sTjxi28Kg=
+  file_glob: true
+  file:
+    # - _build/esa-linux
+    - _build/esa-windows.exe
+    - _build/esa-macos.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: nabinno/esa.red

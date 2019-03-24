@@ -1,9 +1,9 @@
 Red []
 
-Esa-Component-New: ctx [
+Esa-Component-New: context [
     JSON: none NAME: none CATEGORY: none TAGS: none BODY-MD: none
 
-    init: &[
+    init: function [][
         out: ~c[
             button "To Index" [.on-goto-index]
             field 150x24 on-change [set 'NAME face/text] hint "Name"
@@ -15,10 +15,10 @@ Esa-Component-New: ctx [
         ~c[across space 0x0 panel [(out)]]
     ]
 
-    .on-goto-index: &[Esa/navigate index]
+    .on-goto-index: does [Esa/navigate "/index"]
 
-    .on-create-esa: &[
+    .on-create-esa: does [
         Esa-Service-Create/call NAME CATEGORY TAGS BODY-MD
-        Esa/navigate/reload index
+        Esa/navigate/reload "/index"
     ]
 ]

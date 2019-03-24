@@ -1,8 +1,8 @@
 Red []
 
-Esa-Service-Create: ctx [
-    call: fn [name category tags body-md][
-        res: Esa-Api-Client/request/post "posts" "Create" ~m[
+Esa-Service-Create: context [
+    call: func [name category tags body-md][
+        Esa-Api-Client/request/post "posts" "Create" ~m[
             post: ~m[
                 name: (name)
                 body_md: (body-md)
